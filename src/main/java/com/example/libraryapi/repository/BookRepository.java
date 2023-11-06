@@ -14,8 +14,8 @@ public interface BookRepository extends JpaRepository<BookModel, Long> {
     @Query("SELECT a FROM BookModel a WHERE LOWER(a.author) = LOWER(:authorParam)")
     List<BookModel> listBookByAuthor(@Param("authorParam") String authorParam);
 
-    @Query("SELECT t FROM BookModel t WHERE LOWER(t.title) = LOWER(:titleParam)")
-    List<BookModel> listBookByTitle(@Param("titleParam") String titleParam);
+    @Query("SELECT t FROM BookModel t WHERE LOWER(t.title) LIKE LOWER(concat('%', :titleFragment, '%'))")
+    List<BookModel> listBookByTitleFragment(@Param("titleFragment") String titleFragment);
 
     @Query("SELECT y FROM BookModel y WHERE y.yearRelease > :yearParam")
     List<BookModel> listBookAfterYear(@Param("yearParam") Integer yearParam);

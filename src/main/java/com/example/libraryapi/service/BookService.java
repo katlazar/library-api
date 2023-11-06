@@ -47,7 +47,7 @@ public class BookService {
     }
 
     public List<BookDto> getBooksByTitle(String title) {
-        return bookRepository.listBookByTitle(title).stream().map(BookMapper::toBookDto).toList();
+        return bookRepository.listBookByTitleFragment(title).stream().map(BookMapper::toBookDto).toList();
     }
 
     public List<BookDto> getBooksAfterYear(Integer year) {
